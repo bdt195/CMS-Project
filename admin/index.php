@@ -30,8 +30,8 @@ include "includes/admin_header.php";
         </div>
         <!-- /#page-wrapper -->
 
-        <?php
+<?php
 
 include "includes/admin_footer.php"
 
-        ?>
+?>
