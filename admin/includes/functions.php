@@ -44,4 +44,15 @@ function delete_categories(){
     }
 }
 
+function delete_posts(){
+    global $connection;
+    $post_id = $_GET['id'];
+    $query = "DELETE FROM posts WHERE post_id={$post_id}";
+    $delete_query = mysqli_query($connection, $query);
+    if(!$delete_query){
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+    header('Location: posts.php');
+}
+
 ?>
