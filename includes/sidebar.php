@@ -54,7 +54,7 @@
 
                     while($row = mysqli_fetch_assoc($select_categories_sidebar)){
                         $cat_title = $row['cat_title'];
-                        echo "<li><a href='#'>{$cat_title}</a></li>";
+                        echo "<li><a href='category.php?category=$cat_title'>{$cat_title}</a></li>";
                     }
 
                     ?>

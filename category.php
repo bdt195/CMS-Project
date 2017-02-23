@@ -17,16 +17,35 @@ include "includes/navigation.php";
             <div class="col-md-8">
 
                 <?php
+                if(isset($_GET['category'])){
+                    $category_title = $_GET['category'];
+                    $query = "SELECT * FROM categories WHERE cat_title LIKE '$category_title'";
+                    $select_category_query = mysqli_query($connection, $query);
+                    if(!$select_category_query){
+                        die('QUERY FAILED: ' . mysqli_error($connection));
+                    }
 
-                $query = "SELECT * FROM posts";
-                $select_all_posts_query = mysqli_query($connection, $query);
-                while($row = mysqli_fetch_assoc($select_all_posts_query)){
-                    $post_id = $row['post_id'];
-                    $post_title = $row['post_title'];
-                    $post_author = $row['post_author'];
-                    $post_date = $row['post_date'];
-                    $post_image = $row['post_image'];
-                    $post_content = $row['post_content'];
+                    if(mysqli_num_rows($select_category_query) == 0){
+                        echo "<h1>Category not found!</h1>";
+                    } else {
+                        $row = mysqli_fetch_assoc($select_category_query);
+                        $category_id = $row['cat_id'];
+                        $query = "SELECT * FROM posts WHERE post_category_id = $category_id";
+                        $select_post_query = mysqli_query($connection, $query);
+                        if(!$select_post_query){
+                            die('QUERY FAILED: ' . mysqli_error($connection));
+                        }
+
+                        if(mysqli_num_rows($select_post_query) == 0){
+                            echo "<h1>Category is empty!</h1>";
+                        } else {
+                        while($row = mysqli_fetch_assoc($select_post_query)){
+                            $post_id = $row['post_id'];
+                            $post_title = $row['post_title'];
+                            $post_author = $row['post_author'];
+                            $post_date = $row['post_date'];
+                            $post_image = $row['post_image'];
+                            $post_content = $row['post_content'];
 
                     ?>
 
@@ -51,7 +70,7 @@ include "includes/navigation.php";
 
                         <hr>
 
-                <?php } ?>
+                <?php } } } } ?>
 
 
 
