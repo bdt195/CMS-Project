@@ -29,16 +29,13 @@ include "includes/functions.php";
                     else
                         $source = '';
                     switch ($source){
-                        case 'add_post':
-                            include "includes/add_post.php";
-                            break;
                         case 'delete':
-                            delete_posts();
+                            delete_comments();
                             break;
                         case 'edit':
                             include "includes/edit_post.php";
                             break;
-                        default : include "includes/view_all_posts.php";
+                        default : include "includes/view_all_comments.php";
                     }
 
                     ?>

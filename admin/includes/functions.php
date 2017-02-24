@@ -55,4 +55,15 @@ function delete_posts(){
     header('Location: posts.php');
 }
 
+function delete_comments(){
+    global $connection;
+    $comment_id = $_GET['id'];
+    $query = "DELETE FROM comments WHERE comment_id={$comment_id}";
+    $delete_query = mysqli_query($connection, $query);
+    if(!$delete_query){
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+    header('Location: comments.php');
+}
+
 ?>
