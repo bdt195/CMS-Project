@@ -55,14 +55,52 @@ function delete_posts(){
     header('Location: posts.php');
 }
 
-function delete_comments(){
+function delete_comment($id){
     global $connection;
-    $comment_id = $_GET['id'];
+    $comment_id = $id;
+
+    $query = "SELECT comment_post_id FROM comments WHERE comment_id={$comment_id}";
+    $select_post_id_query = mysqli_query($connection, $query);
+    $post_id = mysqli_fetch_assoc($select_post_id_query)['comment_post_id'];
+
     $query = "DELETE FROM comments WHERE comment_id={$comment_id}";
     $delete_query = mysqli_query($connection, $query);
     if(!$delete_query){
         die('QUERY FAILED' . mysqli_error($connection));
     }
+
+    $query = "UPDATE posts SET post_comment_count = post_comment_count - 1 WHERE post_id={$post_id}";
+    $update_query = mysqli_query($connection, $query);
+    if(!$update_query){
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+
+    header('Location: comments.php');
+}
+
+function approve_comment($id){
+    global $connection;
+    $comment_id = $id;
+
+    $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id={$comment_id}";
+    $update_query = mysqli_query($connection, $query);
+    if(!$update_query){
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+
+    header('Location: comments.php');
+}
+
+function unapprove_comment($id){
+    global $connection;
+    $comment_id = $id;
+
+    $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id={$comment_id}";
+    $update_query = mysqli_query($connection, $query);
+    if(!$update_query){
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+
     header('Location: comments.php');
 }
 

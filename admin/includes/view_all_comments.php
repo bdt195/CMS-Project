@@ -28,7 +28,9 @@
         //
         $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
         $select_post = mysqli_query($connection, $query);
-        $post_title = mysqli_fetch_assoc($select_post)['post_title'];
+        $row = mysqli_fetch_assoc($select_post);
+        $post_id = $row['post_id'];
+        $post_title = $row['post_title'];
 
         echo "<tr>";
         echo "<td>{$comment_id}</td>";
@@ -36,11 +38,11 @@
         echo "<td>{$comment_content}</td>";
         echo "<td>{$comment_email}</td>";
         echo "<td>{$comment_status}</td>";
-        echo "<td>{$post_title}</td>";
+        echo "<td><a href='../post.php?id={$post_id}'>{$post_title}</a></td>";
         echo "<td>{$comment_date}</td>";
-        echo "<td><a href='comments.php?source=edit&id'>Approve</a></td>";
-        echo "<td><a href='comments.php?source=edit&id'>Unapprove</a></td>";
-        echo "<td><a href='comments.php?source=delete&id={$comment_id}'>Delete</a></td>";
+        echo "<td><a href='comments.php?approve={$comment_id}'>Approve</a></td>";
+        echo "<td><a href='comments.php?unapprove={$comment_id}'>Unapprove</a></td>";
+        echo "<td><a href='comments.php?delete={$comment_id}'>Delete</a></td>";
         echo "</tr>";
     }
 

@@ -24,18 +24,19 @@ include "includes/functions.php";
 
                     <?php
 
-                    if(isset($_GET['source']))
-                        $source = $_GET['source'];
-                    else
-                        $source = '';
-                    switch ($source){
-                        case 'delete':
-                            delete_comments();
-                            break;
-                        case 'edit':
-                            include "includes/edit_post.php";
-                            break;
-                        default : include "includes/view_all_comments.php";
+                    include "includes/view_all_comments.php";
+
+                    if(isset($_GET['delete'])) {
+                        $comment_id = $_GET['delete'];
+                        delete_comment($comment_id);
+                    }
+                    if(isset($_GET['approve'])) {
+                        $comment_id = $_GET['approve'];
+                        approve_comment($comment_id);
+                    }
+                    if(isset($_GET['unapprove'])) {
+                        $comment_id = $_GET['unapprove'];
+                        unapprove_comment($comment_id);
                     }
 
                     ?>
