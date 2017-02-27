@@ -104,4 +104,14 @@ function unapprove_comment($id){
     header('Location: comments.php');
 }
 
+function delete_user($user_id){
+    global $connection;
+    $query = "DELETE FROM users WHERE user_id={$user_id}";
+    $delete_query = mysqli_query($connection, $query);
+    if(!$delete_query){
+        die('QUERY FAILED' . mysqli_error($connection));
+    }
+    header('Location: users.php');
+}
+
 ?>
