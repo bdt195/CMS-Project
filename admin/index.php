@@ -24,6 +24,8 @@ include "includes/admin_header.php";
                 </div>
                 <!-- /.row -->
 
+                <?php include "includes/admin_widgets.php"; ?>
+
             </div>
             <!-- /.container-fluid -->
 
