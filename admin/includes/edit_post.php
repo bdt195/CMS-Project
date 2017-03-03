@@ -54,8 +54,11 @@ $post_content = $row['post_content'];
     </div>
 
     <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="post_status" value="<?php echo $post_status ?>">
+        <label for="post_status">Post Status</label><br>
+        <select style="height: 30px" name="post_status">
+            <option value='published' <?php if($post_status == 'published') echo 'selected'; ?> >Published</option>
+            <option value='draft' <?php if($post_status == 'draft') echo 'selected'; ?> >Draft</option>
+        </select>
     </div>
 
     <div class="form-group">
@@ -72,6 +75,7 @@ $post_content = $row['post_content'];
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
+        <script src="js/init-editor.js"></script>
         <textarea name="post_content" id="" cols="30" rows="10" class="form-control"><?php echo $post_content ?></textarea>
     </div>
 

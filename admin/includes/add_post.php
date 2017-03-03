@@ -80,6 +80,7 @@ if(isset($_POST['create_post'])){
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
+        <script src="js/init-editor.js"></script>
         <textarea name="post_content" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
 

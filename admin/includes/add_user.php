@@ -19,6 +19,8 @@ if(isset($_POST['create_user'])){
         die("QUERY FAIL: " . mysqli_error($connection));
     }
 
+    echo "<h3>User Created</h3>";
+
 }
 
 ?>
