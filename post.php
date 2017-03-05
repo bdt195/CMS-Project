@@ -61,6 +61,11 @@ if(isset($_GET['id'])){
 
                 <hr>
 
+                <a class="btn btn-primary" href="./admin/posts.php?source=edit&id=<?php echo $post_id ?>">Edit Post <span
+                            class="glyphicon glyphicon-chevron-right"></span></a>
+
+                <hr>
+
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->

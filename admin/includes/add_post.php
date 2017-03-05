@@ -26,6 +26,9 @@ if(isset($_POST['create_post'])){
         die("QUERY FAIL: " . mysqli_error($connection));
     }
 
+    $post_id = mysqli_insert_id($connection);
+    echo "<p class='bg-success'>Post Created. <a href='../post.php?id=$post_id'>View Post</a></p>";
+
 }
 
 ?>
@@ -65,7 +68,12 @@ if(isset($_POST['create_post'])){
 
     <div class="form-group">
         <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="post_status">
+        <br>
+        <select style="height: 30px" name="post_status">
+            <option value='draft'>Select options</option>
+            <option value='published'>Published</option>
+            <option value='draft'>Draft</option>
+        </select>
     </div>
 
     <div class="form-group">
@@ -80,7 +88,6 @@ if(isset($_POST['create_post'])){
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <script src="js/init-editor.js"></script>
         <textarea name="post_content" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
 
